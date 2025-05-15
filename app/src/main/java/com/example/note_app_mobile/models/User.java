@@ -2,7 +2,7 @@ package com.example.note_app_mobile.models;
 
 public class User {
 
-    private int id;
+    private String id;
     private String name;
     private String email;
     private String password;
@@ -10,7 +10,7 @@ public class User {
 
     public User() {}
 
-    public User(String email, int id, String name, String password, String role) {
+    public User(String email, String id, String name, String password, String role) {
         this.email = email;
         this.id = id;
         this.name = name;
@@ -18,11 +18,11 @@ public class User {
         this.role = role;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

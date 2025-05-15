@@ -15,6 +15,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.UUID;
+
 
 public class RegisterActivity  extends AppCompatActivity {
 
@@ -46,38 +48,8 @@ public class RegisterActivity  extends AppCompatActivity {
                String email = emailinput.getText().toString().trim();
                String password = passwordInput.getText().toString().trim();
 
-               if (name.isEmpty()) {
-                   nameInput.setError("Name is required");
-                   return;
-               }
-
-               if (email.isEmpty()) {
-                   nameInput.setError("Email is required");
-                   return;
-               }
-
-               if (password.isEmpty()) {
-                   nameInput.setError("Password is required");
-                   return;
-               }
-
-               User newUser = new User();
-               newUser.setName(name);
-               newUser.setEmail(email);
-               newUser.setPassword(password);
-               newUser.setRole("user");
-
-               String userId = usersRef.push().getKey();
-
-               if (userId != null) {
-                   usersRef.child(userId).setValue(newUser)
-                           .addOnSuccessListener(aVoid -> {
-                               Log.d("RegisterActivity", "User saved successfully");
-                               redirectToLogin();
-                           })
-                           .addOnFailureListener(e -> {
-                               Log.e("RegisterActivity", "Failed to save user", e);
-                           });
+               if (validateinput(name, email, password)) {
+                   saveAndSaveUser(name, email, password);
                }
            }
        });
@@ -95,5 +67,47 @@ public class RegisterActivity  extends AppCompatActivity {
         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private boolean validateinput(String name, String email, String password) {
+        boolean valid = true;
+
+        if (name.isEmpty()) {
+            nameInput.setError("Name is required");
+            valid = false;
+        }
+
+        if (email.isEmpty()) {
+            emailinput.setError("Email is required");
+            valid = false;
+        }
+
+        if (password.isEmpty()) {
+            passwordInput.setError("Password is required");
+            valid = false;
+        }
+
+        return valid;
+    }
+
+    private void saveAndSaveUser(String name, String email, String password) {
+        String userId = UUID.randomUUID().toString();
+
+        User newUser = new User();
+        newUser.setId(userId);
+        newUser.setName(name);
+        newUser.setEmail(email);
+        newUser.setPassword(password);
+        newUser.setRole("user");
+
+        usersRef.child(userId).setValue(newUser)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d("RegisterActivity", "User saved successfully");
+                    redirectToLogin();
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("RegisterActivity", "Failed to save user", e);
+                });
+
     }
 }

@@ -114,10 +114,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private void redirectAfterLogin(String role) {
         if (role.equals("admin")) {
-            Log.e("Redirection", "redirect admin");
+            Intent intent = new Intent(LoginActivity.this, NoteActivity.class);
+            startActivity(intent);
         }
         if (role.equals("user")) {
-            Log.e("Redirection", "redirect user");
+            Intent intent = new Intent(LoginActivity.this, UserActivity.class);
+            startActivity(intent);
         }
     }
 }

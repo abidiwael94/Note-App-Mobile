@@ -1,5 +1,6 @@
 package com.example.note_app_mobile.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,6 +42,14 @@ public class RegisterActivity  extends AppCompatActivity {
            }
        });
 
+        logintext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 }

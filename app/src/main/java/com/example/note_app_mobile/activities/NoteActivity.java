@@ -1,7 +1,9 @@
 package com.example.note_app_mobile.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.note_app_mobile.R;
@@ -18,6 +20,11 @@ public class NoteActivity extends AppCompatActivity {
 
         connecteduser = (User) getIntent().getSerializableExtra("user_extra");
 
-        Log.e("User ", connecteduser.getName());
+        ImageButton newNoteButton = findViewById(R.id.newNoteButton);
+        newNoteButton.setOnClickListener(v -> {
+            Intent intent = new Intent(NoteActivity.this, CreateNoteActivity.class);
+            intent.putExtra("user_extra", connecteduser);
+            startActivity(intent);
+        });
     }
 }

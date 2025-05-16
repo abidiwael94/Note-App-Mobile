@@ -51,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/userIcon" />
 
     <ImageButton
-        android:id="@+id/actionButton"
+        android:id="@+id/newNoteButton"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginTop="22dp"

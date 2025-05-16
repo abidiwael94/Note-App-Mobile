@@ -120,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (user.getRole().equals("user")) {
             Intent intent = new Intent(LoginActivity.this, NoteActivity.class);
+            intent.putExtra("user_extra", user);
             startActivity(intent);
         }
     }

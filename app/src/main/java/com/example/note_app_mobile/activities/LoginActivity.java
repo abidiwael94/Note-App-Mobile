@@ -93,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                             userFound = true;
                             Log.d("FirebaseUser", "User found: " + user.getName());
                             Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
-                            redirectAfterLogin(user.getRole());
+                            redirectAfterLogin(user);
                             break;
                         }
                     }
@@ -112,13 +112,14 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void redirectAfterLogin(String role) {
-        if (role.equals("admin")) {
-            Intent intent = new Intent(LoginActivity.this, NoteActivity.class);
+    private void redirectAfterLogin(User user) {
+        if (user.getRole().equals("admin")) {
+            Intent intent = new Intent(LoginActivity.this, UserActivity.class);
             startActivity(intent);
         }
-        if (role.equals("user")) {
-            Intent intent = new Intent(LoginActivity.this, UserActivity.class);
+
+        if (user.getRole().equals("user")) {
+            Intent intent = new Intent(LoginActivity.this, NoteActivity.class);
             startActivity(intent);
         }
     }

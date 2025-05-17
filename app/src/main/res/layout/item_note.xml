@@ -17,25 +17,27 @@
 
     <TextView
         android:id="@+id/noteTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="75dp"
         android:layout_height="20dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/noteIcon"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:maxLines="1"
+        android:ellipsize="end" />
 
     <TextView
         android:id="@+id/noteContent"
-        android:layout_width="235dp"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/noteTitle"
-        app:layout_constraintTop_toTopOf="parent"
-        android:maxLines="1"
-        android:ellipsize="end"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/noteAction"

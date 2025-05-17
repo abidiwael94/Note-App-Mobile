@@ -70,6 +70,7 @@ public class CreateNoteActivity extends AppCompatActivity {
         notesRef.child(noteId).setValue(newNote)
                 .addOnSuccessListener(aVoid -> {
                     Log.d("CreateNoteActivity", "Note saved successfully");
+                    setResult(RESULT_OK);
                     finish(); // Optional: Close the activity after saving
                 })
                 .addOnFailureListener(e -> {

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,8 +55,16 @@ public class NoteActivity extends AppCompatActivity {
         newNoteButton.setOnClickListener(v -> {
             Intent intent = new Intent(NoteActivity.this, CreateNoteActivity.class);
             intent.putExtra("user_extra", connecteduser);
-            startActivity(intent);
+            startActivityForResult(intent, 1);
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            getUserNotes();
+        }
     }
 
     private void getUserNotes() {

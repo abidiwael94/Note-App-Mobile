@@ -50,7 +50,7 @@ public class NoteActivity extends AppCompatActivity {
 }
 
     private void setupNewNoteAction() {
-        ImageButton newNoteButton = findViewById(R.id.newUserButton);
+        ImageButton newNoteButton = findViewById(R.id.newNoteButton);
         newNoteButton.setOnClickListener(v -> {
             Intent intent = new Intent(NoteActivity.this, CreateNoteActivity.class);
             intent.putExtra("user_extra", connecteduser);

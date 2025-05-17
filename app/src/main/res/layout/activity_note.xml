@@ -6,11 +6,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageButton
-        android:id="@+id/newUserButton"
+        android:id="@+id/newNoteButton"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="10dp"
         android:adjustViewBounds="true"
         android:background="@null"
         android:contentDescription="More options"
@@ -27,11 +27,11 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="1dp"
-        android:background="#EFE4E4"
+        android:background="#D6D7D9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newUserButton"
+        app:layout_constraintTop_toBottomOf="@+id/newNoteButton"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView

@@ -12,14 +12,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.note_app_mobile.R;
 import com.example.note_app_mobile.models.User;
+import com.example.note_app_mobile.models.UserActionListener;
+
 import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
     private final List<User> userList;
+    private final UserActionListener listener;
 
-    public UserAdapter(List<User> userList) {
+    public UserAdapter(List<User> userList, UserActionListener listener) {
         this.userList = userList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -46,13 +50,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.action_view) {
-                    Log.e("User Action View", user.getName());
+                    listener.onViewUser(user, position);
                     return true;
                 } else if (itemId == R.id.action_edit) {
-                    Log.e("User Action Edit", user.getName());
+                    listener.onEditUser(user, position);
                     return true;
                 } else if (itemId == R.id.action_delete) {
-                    Log.e("User Action Delete", user.getName());
+                    listener.onDeleteUser(user, position);
                     return true;
                 }
                 return false;

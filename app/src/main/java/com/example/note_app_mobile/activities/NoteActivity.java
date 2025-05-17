@@ -111,6 +111,8 @@ public class NoteActivity extends AppCompatActivity implements NoteActionListene
 
     @Override
     public void onViewNote(Note note, int position) {
-
+        Intent intent = new Intent(NoteActivity.this, NoteDetailsActivity.class);
+        intent.putExtra("note_extra", note);
+        startActivity(intent);
     }
 }

@@ -23,21 +23,11 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".activities.RegisterActivity"
-            android:exported="true" />
-
-        <activity
-            android:name=".activities.NoteActivity"
-            android:exported="true" />
-
-        <activity
-            android:name=".activities.UserActivity"
-            android:exported="true" />
-
-        <activity
-            android:name=".activities.CreateNoteActivity"
-            android:exported="true" />
+        <activity android:name=".activities.RegisterActivity"/>
+        <activity android:name=".activities.NoteActivity"/>
+        <activity android:name=".activities.UserActivity"/>
+        <activity android:name=".activities.CreateNoteActivity" />
+        <activity android:name=".activities.NoteDetailsActivity"/>
 
     </application>
 

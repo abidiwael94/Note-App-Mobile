@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.note_app_mobile.R;
 import com.example.note_app_mobile.adapters.NoteAdapter;
 import com.example.note_app_mobile.models.Note;
+import com.example.note_app_mobile.models.NoteActionListener;
 import com.example.note_app_mobile.models.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,10 +25,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NoteActivity extends AppCompatActivity {
+public class NoteActivity extends AppCompatActivity implements NoteActionListener {
 
     private User connecteduser;
-    // private RecyclerView recyclerView;
     private NoteAdapter noteAdapter;
     private List<Note> noteList;
 
@@ -42,7 +42,7 @@ public class NoteActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         noteList = new ArrayList<>();
-        noteAdapter = new NoteAdapter(noteList);
+        noteAdapter = new NoteAdapter(noteList, this);
 
         recyclerView.setAdapter(noteAdapter);
 
@@ -82,7 +82,6 @@ public class NoteActivity extends AppCompatActivity {
                     }
                 }
                 noteAdapter.notifyDataSetChanged();
-                Log.d("NoteActivity", "User's Notes count: " + noteList.size());
             }
 
             @Override
@@ -92,4 +91,26 @@ public class NoteActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onDeleteNote(Note note, int position) {
+        DatabaseReference notesRef = FirebaseDatabase.getInstance().getReference("notes");
+        notesRef.child(note.getId()).removeValue()
+                .addOnSuccessListener(aVoid -> {
+                    noteList.remove(position);
+                    noteAdapter.notifyItemRemoved(position);
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("NoteActivity", "Failed to delete note", e);
+                });
+    }
+
+    @Override
+    public void onEditNote(Note note, int position) {
+
+    }
+
+    @Override
+    public void onViewNote(Note note, int position) {
+
+    }
 }

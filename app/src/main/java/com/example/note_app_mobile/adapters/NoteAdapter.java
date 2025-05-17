@@ -12,15 +12,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.note_app_mobile.R;
 import com.example.note_app_mobile.models.Note;
+import com.example.note_app_mobile.models.NoteActionListener;
 
 import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NioteViewHolder> {
 
     private final List<Note> noteList;
+    private final NoteActionListener listener;
 
-    public NoteAdapter(List<Note> noteList) {
+    public NoteAdapter(List<Note> noteList, NoteActionListener listener) {
         this.noteList = noteList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -47,13 +50,13 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NioteViewHolde
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.action_view) {
-                    Log.e("Note Action View", note.getTitle());
+                    listener.onViewNote(note, position);
                     return true;
                 } else if (itemId == R.id.action_edit) {
-                    Log.e("Note Action Edit", note.getTitle());
+                    listener.onEditNote(note, position);
                     return true;
                 } else if (itemId == R.id.action_delete) {
-                    Log.e("Note Action Delete",  note.getTitle());
+                    listener.onDeleteNote(note, position);
                     return true;
                 }
                 return false;

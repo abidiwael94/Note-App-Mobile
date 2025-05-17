@@ -77,7 +77,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             userName = itemView.findViewById(R.id.userName);
             userEmail = itemView.findViewById(R.id.userEmail);
             userIcon = itemView.findViewById(R.id.userIcon);
-            actionButton = itemView.findViewById(R.id.newNoteButton);
+            actionButton = itemView.findViewById(R.id.newUserButton);
         }
     }
 }

@@ -44,8 +44,9 @@ public class UserActivity extends AppCompatActivity implements UserActionListene
 
         recyclerView.setAdapter(userAdapter);
 
+        noteListButtonTapped();
+        profileButtonTapped();
         getAllUsers();
-        setupUserButtonAction();
     }
 
     private void getAllUsers() {
@@ -72,12 +73,19 @@ public class UserActivity extends AppCompatActivity implements UserActionListene
         });
     }
 
-    private void setupUserButtonAction() {
+    private void noteListButtonTapped() {
         Button listNoteButton = findViewById(R.id.noteListButton);
         listNoteButton.setOnClickListener(v -> {
             Intent intent = new Intent(UserActivity.this, NoteActivity.class);
 
             startActivity(intent);
+        });
+    }
+
+    private void profileButtonTapped() {
+        Button listNoteButton = findViewById(R.id.profileButton);
+        listNoteButton.setOnClickListener(v -> {
+
         });
     }
 

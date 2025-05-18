@@ -3,6 +3,7 @@ package com.example.note_app_mobile.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
@@ -46,11 +47,12 @@ public class NoteActivity extends AppCompatActivity implements NoteActionListene
 
         recyclerView.setAdapter(noteAdapter);
 
-        setupNewNoteAction();
+        newNoteButtonTapped();
+        profileButtonTapped();
         getUserNotes();
 }
 
-    private void setupNewNoteAction() {
+    private void newNoteButtonTapped() {
         if (connecteduser != null) {
             ImageButton newNoteButton = findViewById(R.id.newNoteButton);
             newNoteButton.setOnClickListener(v -> {
@@ -59,6 +61,13 @@ public class NoteActivity extends AppCompatActivity implements NoteActionListene
                 startActivityForResult(intent, 1);
             });
         }
+    }
+
+    private void profileButtonTapped() {
+        Button profileButton = findViewById(R.id.userProfileButton);
+        profileButton.setOnClickListener(v -> {
+
+        });
     }
 
     @Override

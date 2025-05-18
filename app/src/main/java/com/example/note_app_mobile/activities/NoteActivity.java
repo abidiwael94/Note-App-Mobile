@@ -49,18 +49,16 @@ public class NoteActivity extends AppCompatActivity implements NoteActionListene
 
         newNoteButtonTapped();
         profileButtonTapped();
-        getUserNotes();
+        getNotes();
 }
 
     private void newNoteButtonTapped() {
-        if (connecteduser != null) {
-            ImageButton newNoteButton = findViewById(R.id.newNoteButton);
-            newNoteButton.setOnClickListener(v -> {
-                Intent intent = new Intent(NoteActivity.this, CreateNoteActivity.class);
-                intent.putExtra("user_extra", connecteduser);
-                startActivityForResult(intent, 1);
-            });
-        }
+        ImageButton newNoteButton = findViewById(R.id.newNoteButton);
+        newNoteButton.setOnClickListener(v -> {
+            Intent intent = new Intent(NoteActivity.this, CreateNoteActivity.class);
+            intent.putExtra("user_extra", connecteduser);
+            startActivityForResult(intent, 1);
+        });
     }
 
     private void profileButtonTapped() {
@@ -74,11 +72,11 @@ public class NoteActivity extends AppCompatActivity implements NoteActionListene
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
-            getUserNotes();
+            getNotes();
         }
     }
 
-    private void getUserNotes() {
+    private void getNotes() {
         DatabaseReference noteRef = FirebaseDatabase.getInstance().getReference("notes");
 
         noteRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -88,7 +86,7 @@ public class NoteActivity extends AppCompatActivity implements NoteActionListene
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Note note = snapshot.getValue(Note.class);
 
-                    if (connecteduser != null) {
+                    if (connecteduser .getRole().equals("user")) {
                         if (note != null && note.getOwner().getId().equals(connecteduser.getId())) {
                             noteList.add(note);
                         }

@@ -115,6 +115,7 @@ public class LoginActivity extends AppCompatActivity {
     private void redirectAfterLogin(User user) {
         if (user.getRole().equals("admin")) {
             Intent intent = new Intent(LoginActivity.this, UserActivity.class);
+            intent.putExtra("user_extra", user);
             startActivity(intent);
         }
 

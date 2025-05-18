@@ -30,11 +30,14 @@ public class UserActivity extends AppCompatActivity implements UserActionListene
     private RecyclerView recyclerView;
     private UserAdapter userAdapter;
     private List<User> userList;
+    private User connecteduser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
+        connecteduser = (User) getIntent().getSerializableExtra("user_extra");
 
         recyclerView = findViewById(R.id.recyclerViewUsers);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -77,7 +80,7 @@ public class UserActivity extends AppCompatActivity implements UserActionListene
         Button listNoteButton = findViewById(R.id.noteListButton);
         listNoteButton.setOnClickListener(v -> {
             Intent intent = new Intent(UserActivity.this, NoteActivity.class);
-
+            intent.putExtra("user_extra", connecteduser);
             startActivity(intent);
         });
     }

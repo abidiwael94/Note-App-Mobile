@@ -51,12 +51,14 @@ public class NoteActivity extends AppCompatActivity implements NoteActionListene
 }
 
     private void setupNewNoteAction() {
-        ImageButton newNoteButton = findViewById(R.id.newNoteButton);
-        newNoteButton.setOnClickListener(v -> {
-            Intent intent = new Intent(NoteActivity.this, CreateNoteActivity.class);
-            intent.putExtra("user_extra", connecteduser);
-            startActivityForResult(intent, 1);
-        });
+        if (connecteduser != null) {
+            ImageButton newNoteButton = findViewById(R.id.newNoteButton);
+            newNoteButton.setOnClickListener(v -> {
+                Intent intent = new Intent(NoteActivity.this, CreateNoteActivity.class);
+                intent.putExtra("user_extra", connecteduser);
+                startActivityForResult(intent, 1);
+            });
+        }
     }
 
     @Override
@@ -77,8 +79,14 @@ public class NoteActivity extends AppCompatActivity implements NoteActionListene
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Note note = snapshot.getValue(Note.class);
 
-                    if (note != null && note.getOwner().getId().equals(connecteduser.getId())) {
-                        noteList.add(note);
+                    if (connecteduser != null) {
+                        if (note != null && note.getOwner().getId().equals(connecteduser.getId())) {
+                            noteList.add(note);
+                        }
+                    } else {
+                        if (note != null) {
+                            noteList.add(note);
+                        }
                     }
                 }
                 noteAdapter.notifyDataSetChanged();

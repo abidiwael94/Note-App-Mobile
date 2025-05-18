@@ -1,7 +1,10 @@
 package com.example.note_app_mobile.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -42,6 +45,7 @@ public class UserActivity extends AppCompatActivity implements UserActionListene
         recyclerView.setAdapter(userAdapter);
 
         getAllUsers();
+        setupUserButtonAction();
     }
 
     private void getAllUsers() {
@@ -65,6 +69,15 @@ public class UserActivity extends AppCompatActivity implements UserActionListene
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Log.e("UserActivity", "Failed to load users", databaseError.toException());
             }
+        });
+    }
+
+    private void setupUserButtonAction() {
+        Button listNoteButton = findViewById(R.id.noteListButton);
+        listNoteButton.setOnClickListener(v -> {
+            Intent intent = new Intent(UserActivity.this, NoteActivity.class);
+
+            startActivity(intent);
         });
     }
 

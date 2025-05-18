@@ -7,7 +7,7 @@
 
 
     <ImageButton
-        android:id="@+id/newNoteButton"
+        android:id="@+id/newUserButton"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginTop="15dp"

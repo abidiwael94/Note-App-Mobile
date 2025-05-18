@@ -28,6 +28,7 @@
         <activity android:name=".activities.UserActivity"/>
         <activity android:name=".activities.CreateNoteActivity" />
         <activity android:name=".activities.NoteDetailsActivity"/>
+        <activity android:name=".activities.ProfileActivity"/>
 
     </application>
 

@@ -64,7 +64,9 @@ public class NoteActivity extends AppCompatActivity implements NoteActionListene
     private void profileButtonTapped() {
         Button profileButton = findViewById(R.id.userProfileButton);
         profileButton.setOnClickListener(v -> {
-
+            Intent intent = new Intent(NoteActivity.this, ProfileActivity.class);
+            intent.putExtra("user_extra", connecteduser);
+            startActivity(intent);
         });
     }
 

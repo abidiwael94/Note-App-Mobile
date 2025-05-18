@@ -15,16 +15,15 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Date;
 import java.util.UUID;
 
 
 public class RegisterActivity  extends AppCompatActivity {
 
-    private TextInputEditText nameInput, emailinput, passwordInput;
+    private TextInputEditText nameInput, emailInput, passwordInput;
     private Button registerbtn;
     private TextView logintext;
-
-    private FirebaseDatabase firebaseDatabase;
     private DatabaseReference usersRef;
 
     @Override
@@ -36,7 +35,7 @@ public class RegisterActivity  extends AppCompatActivity {
         usersRef = firebaseDatabase.getReference("users");
 
         nameInput = findViewById(R.id.inputNameRegister);
-        emailinput = findViewById(R.id.inputEmailRegister);
+        emailInput = findViewById(R.id.inputEmailRegister);
         passwordInput = findViewById(R.id.inputPasswordRegister);
         registerbtn = findViewById(R.id.registerBtn);
         logintext = findViewById(R.id.loginText);
@@ -45,7 +44,7 @@ public class RegisterActivity  extends AppCompatActivity {
            @Override
            public void onClick(View view) {
                String name = nameInput.getText().toString().trim();
-               String email = emailinput.getText().toString().trim();
+               String email = emailInput.getText().toString().trim();
                String password = passwordInput.getText().toString().trim();
 
                if (validateinput(name, email, password)) {
@@ -78,7 +77,7 @@ public class RegisterActivity  extends AppCompatActivity {
         }
 
         if (email.isEmpty()) {
-            emailinput.setError("Email is required");
+            emailInput.setError("Email is required");
             valid = false;
         }
 
@@ -99,6 +98,7 @@ public class RegisterActivity  extends AppCompatActivity {
         newUser.setEmail(email);
         newUser.setPassword(password);
         newUser.setRole("user");
+        newUser.setCreatedAt(new Date());
 
         usersRef.child(userId).setValue(newUser)
                 .addOnSuccessListener(aVoid -> {

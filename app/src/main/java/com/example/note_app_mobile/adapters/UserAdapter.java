@@ -1,6 +1,5 @@
 package com.example.note_app_mobile.adapters;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

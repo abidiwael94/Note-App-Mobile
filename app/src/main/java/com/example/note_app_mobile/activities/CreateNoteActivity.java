@@ -19,8 +19,6 @@ public class CreateNoteActivity extends AppCompatActivity {
     private EditText titleInput, contentInput;
     private Button saveButton;
     private User owner;
-
-    private FirebaseDatabase firebaseDatabase;
     private DatabaseReference notesRef;
 
     @Override
@@ -71,7 +69,7 @@ public class CreateNoteActivity extends AppCompatActivity {
                 .addOnSuccessListener(aVoid -> {
                     Log.d("CreateNoteActivity", "Note saved successfully");
                     setResult(RESULT_OK);
-                    finish(); // Optional: Close the activity after saving
+                    finish();
                 })
                 .addOnFailureListener(e -> {
                     Log.e("CreateNoteActivity", "Failed to save note", e);

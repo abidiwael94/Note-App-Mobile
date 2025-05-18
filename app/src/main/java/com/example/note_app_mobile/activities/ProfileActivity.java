@@ -10,19 +10,16 @@ import com.example.note_app_mobile.R;
 import com.example.note_app_mobile.models.User;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 public class ProfileActivity extends AppCompatActivity {
-
-    private User user;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        user = (User) getIntent().getSerializableExtra("user_extra");
+        User user = (User) getIntent().getSerializableExtra("user_extra");
 
         TextView nameTextView, emailTextView, pwdTextView, roleTextView, dateTextView;
 
@@ -35,14 +32,12 @@ public class ProfileActivity extends AppCompatActivity {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy", Locale.FRANCE);
 
-        nameTextView.setText(user.getName());
-        emailTextView.setText(user.getEmail());
-        pwdTextView.setText(user.getPassword());
-        roleTextView.setText(user.getRole());
-        dateTextView.setText("- - -");
-
-
-
-
+        if (user != null) {
+            nameTextView.setText(user.getName());
+            emailTextView.setText(user.getEmail());
+            pwdTextView.setText(user.getPassword());
+            roleTextView.setText(user.getRole());
+            dateTextView.setText(dateFormat.format(user.getCreatedAt()));
+        }
     }
 }
